@@ -19,15 +19,15 @@ export default function RouteForm({ setRouteGeojson }) {
       currentLocation,
       pickupLocation,
       dropoffLocation,
-      cycleUsedHours: parseInt(cycleUsedHours, 10) || 0, // <-- cambiado a entero
+      cycleUsedHours: parseInt(cycleUsedHours, 10) || 0,
     };
 
     try {
       const result = await submitInputs(data);
+      
       setResponseData(result);
-
-      // Convierte OSRM geojson de lon,lat a lat,lon para Leaflet
-      const routeCoords = result.routes[0].geometry.coordinates.map(
+      console.log(result)
+      const routeCoords = result.route.coordinates.map(
         ([lon, lat]) => [lat, lon]
       );
 

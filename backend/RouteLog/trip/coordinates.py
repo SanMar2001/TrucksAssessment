@@ -11,7 +11,7 @@ def get_coordinates(cities):
                 resp.raise_for_status()
                 data = resp.json()
                 if not data:
-                    return None, None
+                    raise ValueError("City not found")
                 lat = float(data[0]["lat"])
                 lon = float(data[0]["lon"])
                 coords.append((lat, lon))
@@ -20,7 +20,7 @@ def get_coordinates(cities):
                 return None, None
         return coords
     else:
-        return None, None
+        raise ValueError("Error loading cities")
 
 
 def get_route(coords_list):
@@ -29,7 +29,7 @@ def get_route(coords_list):
         return None
 
     coord_str = ";".join([f"{lon},{lat}" for lat, lon in coords_list])
-    url = f"http://router.project-osrm.org/route/v1/driving/{coord_str}?overview=full&geometries=geojson"
+    url = f"http://router.project-osrm.org/route/v1/driving/{coord_str}?overview=full&geometries=geojson&annotations=duration,distance"
     try:
         resp = requests.get(url, timeout=10)
         resp.raise_for_status()

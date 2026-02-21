@@ -5,7 +5,7 @@ import RouteForm from './components/RouteForm';
 
 function App() {
   const [message, setMessage] = useState("Loading...");
-  const [routeGeojson, setRouteGeojson] = useState(null); // Estado para la ruta
+  const [routeGeojson, setRouteGeojson] = useState(null);
 
   useEffect(() => {
     async function checkBackend() {
@@ -25,10 +25,10 @@ function App() {
       <h1>Route Planner</h1>
       <p>{message}</p>
 
-      {/* MapView recibe la ruta */}
+      {}
       <MapView routeGeojson={routeGeojson} />
 
-      {/* RouteForm recibe la función para actualizar la ruta */}
+      {}
       <RouteForm setRouteGeojson={setRouteGeojson} />
     </div>
   );
