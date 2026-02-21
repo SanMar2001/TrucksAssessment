@@ -27,7 +27,7 @@ export default function RouteForm({ setRouteGeojson }) {
       
       setResponseData(result);
       console.log(result)
-      const routeCoords = result.route.coordinates.map(
+      const routeCoords = result.route.geometry.coordinates.map(
         ([lon, lat]) => [lat, lon]
       );
 

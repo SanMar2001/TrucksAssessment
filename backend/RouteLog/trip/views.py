@@ -49,7 +49,7 @@ def calculate(request):
         result = process_events(events)
 
         return Response({
-            "route": route,
+            "route": route['routes'][0],
             "simulation": result
         })
 
